@@ -1,0 +1,271 @@
+include_rules
+include $(GITTUP_ROOT)/mplayer/mplayer.tup
+
+CFLAGS += -DHAVE_AV_CONFIG_H
+
+objs-y = allformats.c         \
+       cutils.c             \
+       metadata.c           \
+       metadata_compat.c    \
+       options.c            \
+       os_support.c         \
+       sdp.c                \
+       seek.c               \
+       utils.c              \
+
+# muxers/demuxers
+objs-@(AAC_DEMUXER)               += raw.c id3v1.c id3v2.c
+objs-@(AC3_DEMUXER)               += raw.c
+objs-@(AC3_MUXER)                 += raw.c
+objs-@(ADTS_MUXER)                += adtsenc.c
+objs-@(AEA_DEMUXER)               += aea.c
+objs-@(AIFF_DEMUXER)              += aiffdec.c riff.c raw.c
+objs-@(AIFF_MUXER)                += aiffenc.c riff.c
+objs-@(AMR_DEMUXER)               += amr.c
+objs-@(AMR_MUXER)                 += amr.c
+objs-@(APC_DEMUXER)               += apc.c
+objs-@(APE_DEMUXER)               += ape.c apetag.c
+objs-@(ASF_DEMUXER)               += asfdec.c asf.c asfcrypt.c \
+                                            riff.c avlanguage.c
+objs-@(ASF_MUXER)                 += asfenc.c asf.c riff.c
+objs-@(ASS_DEMUXER)               += assdec.c
+objs-@(ASS_MUXER)                 += assenc.c
+objs-@(AU_DEMUXER)                += au.c raw.c
+objs-@(AU_MUXER)                  += au.c
+objs-@(AVI_DEMUXER)               += avidec.c riff.c
+objs-@(AVI_MUXER)                 += avienc.c riff.c
+objs-@(AVISYNTH)                  += avisynth.c
+objs-@(AVM2_MUXER)                += swfenc.c
+objs-@(AVS_DEMUXER)               += avs.c vocdec.c voc.c
+objs-@(BETHSOFTVID_DEMUXER)       += bethsoftvid.c
+objs-@(BFI_DEMUXER)               += bfi.c
+objs-@(C93_DEMUXER)               += c93.c vocdec.c voc.c
+objs-@(CAF_DEMUXER)               += cafdec.c caf.c mov.c riff.c isom.c
+objs-@(CAVSVIDEO_DEMUXER)         += raw.c
+objs-@(CRC_MUXER)                 += crcenc.c
+objs-@(DAUD_DEMUXER)              += daud.c
+objs-@(DAUD_MUXER)                += daud.c
+objs-@(DIRAC_DEMUXER)             += raw.c
+objs-@(DIRAC_MUXER)               += raw.c
+objs-@(DNXHD_DEMUXER)             += raw.c
+objs-@(DNXHD_MUXER)               += raw.c
+objs-@(DSICIN_DEMUXER)            += dsicin.c
+objs-@(DTS_DEMUXER)               += raw.c id3v2.c
+objs-@(DTS_MUXER)                 += raw.c
+objs-@(DV_DEMUXER)                += dv.c
+objs-@(DV_MUXER)                  += dvenc.c
+objs-@(DXA_DEMUXER)               += dxa.c riff.c
+objs-@(EA_CDATA_DEMUXER)          += eacdata.c
+objs-@(EA_DEMUXER)                += electronicarts.c
+objs-@(EAC3_DEMUXER)              += raw.c id3v2.c
+objs-@(EAC3_MUXER)                += raw.c
+objs-@(FFM_DEMUXER)               += ffmdec.c
+objs-@(FFM_MUXER)                 += ffmenc.c
+objs-@(FLAC_DEMUXER)              += flacdec.c raw.c id3v1.c \
+                                            id3v2.c oggparsevorbis.c
+objs-@(FLAC_MUXER)                += flacenc.c
+objs-@(FLIC_DEMUXER)              += flic.c
+objs-@(FLV_DEMUXER)               += flvdec.c
+objs-@(FLV_MUXER)                 += flvenc.c avc.c
+objs-@(FOURXM_DEMUXER)            += 4xm.c
+objs-@(FRAMECRC_MUXER)            += framecrcenc.c
+objs-@(GIF_MUXER)                 += gif.c
+objs-@(GSM_DEMUXER)               += raw.c id3v2.c
+objs-@(GXF_DEMUXER)               += gxf.c
+objs-@(GXF_MUXER)                 += gxfenc.c audiointerleave.c
+objs-@(H261_DEMUXER)              += raw.c
+objs-@(H261_MUXER)                += raw.c
+objs-@(H263_DEMUXER)              += raw.c
+objs-@(H263_MUXER)                += raw.c
+objs-@(H264_DEMUXER)              += raw.c
+objs-@(H264_MUXER)                += raw.c
+objs-@(IDCIN_DEMUXER)             += idcin.c
+objs-@(IFF_DEMUXER)               += iff.c
+objs-@(IMAGE2_DEMUXER)            += img2.c
+objs-@(IMAGE2_MUXER)              += img2.c
+objs-@(IMAGE2PIPE_DEMUXER)        += img2.c
+objs-@(IMAGE2PIPE_MUXER)          += img2.c
+objs-@(INGENIENT_DEMUXER)         += raw.c
+objs-@(IPMOVIE_DEMUXER)           += ipmovie.c
+objs-@(ISS_DEMUXER)               += iss.c
+objs-@(LMLM4_DEMUXER)             += lmlm4.c
+objs-@(M4V_DEMUXER)               += raw.c
+objs-@(M4V_MUXER)                 += raw.c
+objs-@(MATROSKA_DEMUXER)          += matroskadec.c matroska.c \
+                                            riff.c isom.c
+objs-@(MATROSKA_MUXER)            += matroskaenc.c matroska.c \
+                                            riff.c isom.c avc.c flacenc.c
+objs-@(MJPEG_DEMUXER)             += raw.c
+objs-@(MJPEG_MUXER)               += raw.c
+objs-@(MLP_DEMUXER)               += raw.c id3v2.c
+objs-@(MLP_MUXER)                 += raw.c
+objs-@(MM_DEMUXER)                += mm.c
+objs-@(MMF_DEMUXER)               += mmf.c raw.c
+objs-@(MMF_MUXER)                 += mmf.c riff.c
+objs-@(MOV_DEMUXER)               += mov.c riff.c isom.c
+objs-@(MOV_MUXER)                 += movenc.c riff.c isom.c avc.c
+objs-@(MP2_MUXER)                 += mp3.c id3v1.c
+objs-@(MP3_DEMUXER)               += mp3.c id3v1.c id3v2.c
+objs-@(MP3_MUXER)                 += mp3.c id3v1.c id3v2.c
+objs-@(MPC_DEMUXER)               += mpc.c id3v1.c id3v2.c apetag.c
+objs-@(MPC8_DEMUXER)              += mpc8.c
+objs-@(MPEG1SYSTEM_MUXER)         += mpegenc.c
+objs-@(MPEG1VCD_MUXER)            += mpegenc.c
+objs-@(MPEG2DVD_MUXER)            += mpegenc.c
+objs-@(MPEG2VOB_MUXER)            += mpegenc.c
+objs-@(MPEG2SVCD_MUXER)           += mpegenc.c
+objs-@(MPEG1VIDEO_MUXER)          += raw.c
+objs-@(MPEG2VIDEO_MUXER)          += raw.c
+objs-@(MPEGPS_DEMUXER)            += mpeg.c
+objs-@(MPEGTS_DEMUXER)            += mpegts.c
+objs-@(MPEGTS_MUXER)              += mpegtsenc.c
+objs-@(MPEGVIDEO_DEMUXER)         += raw.c
+objs-@(MPJPEG_MUXER)              += mpjpeg.c
+objs-@(MSNWC_TCP_DEMUXER)         += msnwc_tcp.c
+objs-@(MTV_DEMUXER)               += mtv.c
+objs-@(MVI_DEMUXER)               += mvi.c
+objs-@(MXF_DEMUXER)               += mxfdec.c mxf.c
+objs-@(MXF_MUXER)                 += mxfenc.c mxf.c audiointerleave.c
+objs-@(NC_DEMUXER)                += ncdec.c
+objs-@(NSV_DEMUXER)               += nsvdec.c
+objs-@(NULL_MUXER)                += raw.c
+objs-@(NUT_DEMUXER)               += nutdec.c nut.c riff.c
+objs-@(NUT_MUXER)                 += nutenc.c nut.c riff.c
+objs-@(NUV_DEMUXER)               += nuv.c riff.c
+objs-@(OGG_DEMUXER)               += oggdec.c         \
+                                            oggparseflac.c   \
+                                            oggparseogm.c    \
+                                            oggparsespeex.c  \
+                                            oggparsetheora.c \
+                                            oggparsevorbis.c \
+                                            riff.c
+objs-@(OGG_MUXER)                 += oggenc.c
+objs-@(OMA_DEMUXER)               += oma.c raw.c
+objs-@(PCM_ALAW_DEMUXER)          += raw.c
+objs-@(PCM_ALAW_MUXER)            += raw.c
+objs-@(PCM_F32BE_DEMUXER)         += raw.c
+objs-@(PCM_F32BE_MUXER)           += raw.c
+objs-@(PCM_F32LE_DEMUXER)         += raw.c
+objs-@(PCM_F32LE_MUXER)           += raw.c
+objs-@(PCM_F64BE_DEMUXER)         += raw.c
+objs-@(PCM_F64BE_MUXER)           += raw.c
+objs-@(PCM_F64LE_DEMUXER)         += raw.c
+objs-@(PCM_F64LE_MUXER)           += raw.c
+objs-@(PCM_MULAW_DEMUXER)         += raw.c
+objs-@(PCM_MULAW_MUXER)           += raw.c
+objs-@(PCM_S16BE_DEMUXER)         += raw.c
+objs-@(PCM_S16BE_MUXER)           += raw.c
+objs-@(PCM_S16LE_DEMUXER)         += raw.c
+objs-@(PCM_S16LE_MUXER)           += raw.c
+objs-@(PCM_S24BE_DEMUXER)         += raw.c
+objs-@(PCM_S24BE_MUXER)           += raw.c
+objs-@(PCM_S24LE_DEMUXER)         += raw.c
+objs-@(PCM_S24LE_MUXER)           += raw.c
+objs-@(PCM_S32BE_DEMUXER)         += raw.c
+objs-@(PCM_S32BE_MUXER)           += raw.c
+objs-@(PCM_S32LE_DEMUXER)         += raw.c
+objs-@(PCM_S32LE_MUXER)           += raw.c
+objs-@(PCM_S8_DEMUXER)            += raw.c
+objs-@(PCM_S8_MUXER)              += raw.c
+objs-@(PCM_U16BE_DEMUXER)         += raw.c
+objs-@(PCM_U16BE_MUXER)           += raw.c
+objs-@(PCM_U16LE_DEMUXER)         += raw.c
+objs-@(PCM_U16LE_MUXER)           += raw.c
+objs-@(PCM_U24BE_DEMUXER)         += raw.c
+objs-@(PCM_U24BE_MUXER)           += raw.c
+objs-@(PCM_U24LE_DEMUXER)         += raw.c
+objs-@(PCM_U24LE_MUXER)           += raw.c
+objs-@(PCM_U32BE_DEMUXER)         += raw.c
+objs-@(PCM_U32BE_MUXER)           += raw.c
+objs-@(PCM_U32LE_DEMUXER)         += raw.c
+objs-@(PCM_U32LE_MUXER)           += raw.c
+objs-@(PCM_U8_DEMUXER)            += raw.c
+objs-@(PCM_U8_MUXER)              += raw.c
+objs-@(PVA_DEMUXER)               += pva.c
+objs-@(QCP_DEMUXER)               += qcp.c
+objs-@(R3D_DEMUXER)               += r3d.c
+objs-@(RAWVIDEO_DEMUXER)          += raw.c
+objs-@(RAWVIDEO_MUXER)            += raw.c
+objs-@(RL2_DEMUXER)               += rl2.c
+objs-@(RM_DEMUXER)                += rmdec.c rm.c
+objs-@(RM_MUXER)                  += rmenc.c rm.c
+objs-@(ROQ_DEMUXER)               += idroq.c
+objs-@(ROQ_MUXER)                 += raw.c
+objs-@(RPL_DEMUXER)               += rpl.c
+objs-@(RTP_MUXER)                 += rtp.c         \
+                                            rtp_aac.c     \
+                                            rtp_amr.c     \
+                                            rtp_asf.c     \
+                                            rtp_h263.c    \
+                                            rtp_mpv.c     \
+                                            rtpenc.c      \
+                                            rtpenc_h264.c \
+                                            avc.c
+objs-@(RTSP_DEMUXER)              += rtsp.c
+objs-@(SDP_DEMUXER)               += rtsp.c        \
+                                            rdt.c         \
+                                            rtp.c         \
+                                            rtpdec.c      \
+                                            rtp_asf.c     \
+                                            rtp_h264.c    \
+                                            rtp_vorbis.c
+objs-@(SEGAFILM_DEMUXER)          += segafilm.c
+objs-@(SHORTEN_DEMUXER)           += raw.c id3v2.c
+objs-@(SIFF_DEMUXER)              += siff.c
+objs-@(SMACKER_DEMUXER)           += smacker.c
+objs-@(SOL_DEMUXER)               += sol.c raw.c
+objs-@(SOX_DEMUXER)               += soxdec.c raw.c
+objs-@(SOX_MUXER)                 += soxenc.c
+objs-@(SPDIF_MUXER)               += spdif.c
+objs-@(STR_DEMUXER)               += psxstr.c
+objs-@(SWF_DEMUXER)               += swfdec.c
+objs-@(SWF_MUXER)                 += swfenc.c
+objs-@(THP_DEMUXER)               += thp.c
+objs-@(TIERTEXSEQ_DEMUXER)        += tiertexseq.c
+objs-@(TMV_DEMUXER)               += tmv.c
+objs-@(TRUEHD_DEMUXER)            += raw.c id3v2.c
+objs-@(TRUEHD_MUXER)              += raw.c
+objs-@(TTA_DEMUXER)               += tta.c
+objs-@(TXD_DEMUXER)               += txd.c
+objs-@(VC1_DEMUXER)               += raw.c
+objs-@(VC1T_DEMUXER)              += vc1test.c
+objs-@(VC1T_MUXER)                += vc1testenc.c
+objs-@(VMD_DEMUXER)               += sierravmd.c
+objs-@(VOC_DEMUXER)               += vocdec.c voc.c
+objs-@(VOC_MUXER)                 += vocenc.c voc.c
+objs-@(VQF_DEMUXER)               += vqf.c
+objs-@(W64_DEMUXER)               += wav.c riff.c raw.c
+objs-@(WAV_DEMUXER)               += wav.c riff.c raw.c
+objs-@(WAV_MUXER)                 += wav.c riff.c
+objs-@(WC3_DEMUXER)               += wc3movie.c
+objs-@(WSAUD_DEMUXER)             += westwood.c
+objs-@(WSVQA_DEMUXER)             += westwood.c
+objs-@(WV_DEMUXER)                += wv.c
+objs-@(XA_DEMUXER)                += xa.c
+objs-@(YUV4MPEGPIPE_MUXER)        += yuv4mpeg.c
+objs-@(YUV4MPEGPIPE_DEMUXER)      += yuv4mpeg.c
+
+# external libraries
+objs-@(LIBNUT_DEMUXER)            += libnut.c riff.c
+objs-@(LIBNUT_MUXER)              += libnut.c riff.c
+
+# protocols I/O
+objs-y += avio.c aviobuf.c
+
+objs-@(FILE_PROTOCOL)             += file.c
+objs-@(GOPHER_PROTOCOL)           += gopher.c
+objs-@(HTTP_PROTOCOL)             += http.c
+objs-@(PIPE_PROTOCOL)             += file.c
+objs-@(RTMP_PROTOCOL)             += rtmpproto.c rtmppkt.c
+objs-@(RTP_PROTOCOL)              += rtpproto.c
+objs-@(TCP_PROTOCOL)              += tcp.c
+objs-@(UDP_PROTOCOL)              += udp.c
+
+# libavdevice dependencies
+objs-@(JACK_INDEV)                += timefilter.c
+
+CFLAGS += -ftup-n-is-zero
+ifeq (@(MPLAYER),y)
+: foreach $(objs-y) |> !cc |> %B.o {objs}
+: {objs} |> !ar |> libavformat.a
+endif
