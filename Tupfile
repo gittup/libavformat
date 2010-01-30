@@ -263,7 +263,6 @@ objs-@(UDP_PROTOCOL)              += udp.c
 # libavdevice dependencies
 objs-@(JACK_INDEV)                += timefilter.c
 
-CFLAGS += -ftup-n-is-zero
 ifeq (@(MPLAYER),y)
 : foreach $(objs-y) |> !cc |> %B.o {objs}
 : {objs} |> !ar |> libavformat.a
