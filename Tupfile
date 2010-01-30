@@ -2,7 +2,9 @@ include_rules
 include $(GITTUP_ROOT)/mplayer/mplayer.tup
 include $(GITTUP_ROOT)/mplayer/common.tup
 
-objs-y = allformats.c         \
+NAME = avformat
+
+objs = allformats.c         \
        cutils.c             \
        metadata.c           \
        metadata_compat.c    \
@@ -263,7 +265,11 @@ objs-@(UDP_PROTOCOL)              += udp.c
 # libavdevice dependencies
 objs-@(JACK_INDEV)                += timefilter.c
 
+
+
 ifeq (@(MPLAYER),y)
-: foreach $(objs-y) |> !cc |> %B.o {objs}
-: {objs} |> !ar |> libavformat.a
+objs-@(HAVE_MMX) += $(MMX-objs-y)
+objs += $(objs-y)
+: foreach $(objs) |> !mplayer. |> %B.o {objs}
+: {objs} |> !ar |> lib$(NAME).a
 endif
