@@ -56,11 +56,14 @@ typedef struct {
 typedef struct {
     uint32_t type;
     char *path;
+    char *dir;
+    char volume[28];
+    char filename[64];
+    int16_t nlvl_to, nlvl_from;
 } MOVDref;
 
 typedef struct {
     uint32_t type;
-    int64_t offset;
     int64_t size; /* total size (excluding the size and type fields) */
 } MOVAtom;
 

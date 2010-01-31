@@ -24,6 +24,7 @@ objs-@(AIFF_DEMUXER)              += aiffdec.c riff.c raw.c
 objs-@(AIFF_MUXER)                += aiffenc.c riff.c
 objs-@(AMR_DEMUXER)               += amr.c
 objs-@(AMR_MUXER)                 += amr.c
+objs-@(ANM_DEMUXER)               += anm.c
 objs-@(APC_DEMUXER)               += apc.c
 objs-@(APE_DEMUXER)               += ape.c apetag.c
 objs-@(ASF_DEMUXER)               += asfdec.c asf.c asfcrypt.c \
@@ -43,6 +44,7 @@ objs-@(BFI_DEMUXER)               += bfi.c
 objs-@(C93_DEMUXER)               += c93.c vocdec.c voc.c
 objs-@(CAF_DEMUXER)               += cafdec.c caf.c mov.c riff.c isom.c
 objs-@(CAVSVIDEO_DEMUXER)         += raw.c
+objs-@(CDG_DEMUXER)               += cdg.c
 objs-@(CRC_MUXER)                 += crcenc.c
 objs-@(DAUD_DEMUXER)              += daud.c
 objs-@(DAUD_MUXER)                += daud.c
@@ -62,6 +64,8 @@ objs-@(EAC3_DEMUXER)              += raw.c id3v2.c
 objs-@(EAC3_MUXER)                += raw.c
 objs-@(FFM_DEMUXER)               += ffmdec.c
 objs-@(FFM_MUXER)                 += ffmenc.c
+objs-@(FILMSTRIP_DEMUXER)         += filmstripdec.c
+objs-@(FILMSTRIP_MUXER)           += filmstripenc.c
 objs-@(FLAC_DEMUXER)              += flacdec.c raw.c id3v1.c \
                                             id3v2.c oggparsevorbis.c
 objs-@(FLAC_MUXER)                += flacenc.c
@@ -89,6 +93,7 @@ objs-@(IMAGE2PIPE_MUXER)          += img2.c
 objs-@(INGENIENT_DEMUXER)         += raw.c
 objs-@(IPMOVIE_DEMUXER)           += ipmovie.c
 objs-@(ISS_DEMUXER)               += iss.c
+objs-@(IV8_DEMUXER)               += iv8.c
 objs-@(LMLM4_DEMUXER)             += lmlm4.c
 objs-@(M4V_DEMUXER)               += raw.c
 objs-@(M4V_MUXER)                 += raw.c
@@ -134,6 +139,7 @@ objs-@(NUT_DEMUXER)               += nutdec.c nut.c riff.c
 objs-@(NUT_MUXER)                 += nutenc.c nut.c riff.c
 objs-@(NUV_DEMUXER)               += nuv.c riff.c
 objs-@(OGG_DEMUXER)               += oggdec.c         \
+                                            oggparsedirac.c  \
                                             oggparseflac.c   \
                                             oggparseogm.c    \
                                             oggparsespeex.c  \
@@ -194,11 +200,10 @@ objs-@(ROQ_DEMUXER)               += idroq.c
 objs-@(ROQ_MUXER)                 += raw.c
 objs-@(RPL_DEMUXER)               += rpl.c
 objs-@(RTP_MUXER)                 += rtp.c         \
-                                            rtp_aac.c     \
-                                            rtp_amr.c     \
-                                            rtp_asf.c     \
-                                            rtp_h263.c    \
-                                            rtp_mpv.c     \
+                                            rtpenc_aac.c     \
+                                            rtpenc_amr.c     \
+                                            rtpenc_h263.c    \
+                                            rtpenc_mpv.c     \
                                             rtpenc.c      \
                                             rtpenc_h264.c \
                                             avc.c
@@ -226,7 +231,7 @@ objs-@(TIERTEXSEQ_DEMUXER)        += tiertexseq.c
 objs-@(TMV_DEMUXER)               += tmv.c
 objs-@(TRUEHD_DEMUXER)            += raw.c id3v2.c
 objs-@(TRUEHD_MUXER)              += raw.c
-objs-@(TTA_DEMUXER)               += tta.c
+objs-@(TTA_DEMUXER)               += tta.c id3v1.c id3v2.c
 objs-@(TXD_DEMUXER)               += txd.c
 objs-@(VC1_DEMUXER)               += raw.c
 objs-@(VC1T_DEMUXER)              += vc1test.c
@@ -264,8 +269,6 @@ objs-@(UDP_PROTOCOL)              += udp.c
 
 # libavdevice dependencies
 objs-@(JACK_INDEV)                += timefilter.c
-
-
 
 ifeq (@(MPLAYER),y)
 objs-@(HAVE_MMX) += $(MMX-objs-y)

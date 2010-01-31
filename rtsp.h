@@ -121,6 +121,10 @@ typedef struct RTSPMessageHeader {
      * should be re-transmitted by the client in every RTSP command. */
     char session_id[512];
 
+    /** the "Location:" field. This value is used to handle redirection.
+     */
+    char location[4096];
+
     /** the "RealChallenge1:" field from the server */
     char real_challenge[64];
 
@@ -262,6 +266,11 @@ typedef struct RTSPState {
      * data packet in the bytecontext for each incoming RTSP packet. */
     uint64_t asf_pb_pos;
     //@}
+
+    /** some MS RTSP streams contain a URL in the SDP that we need to use
+     * for all subsequent RTSP requests, rather than the input URI; in
+     * other cases, this is a copy of AVFormatContext->filename. */
+    char control_uri[1024];
 } RTSPState;
 
 /**
