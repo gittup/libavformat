@@ -256,7 +256,7 @@ objs-@(LIBNUT_DEMUXER)            += libnut.c riff.c
 objs-@(LIBNUT_MUXER)              += libnut.c riff.c
 
 # protocols I/O
-objs-y += avio.c aviobuf.c
+objs-1 += avio.c aviobuf.c
 
 objs-@(FILE_PROTOCOL)             += file.c
 objs-@(GOPHER_PROTOCOL)           += gopher.c
@@ -271,8 +271,8 @@ objs-@(UDP_PROTOCOL)              += udp.c
 objs-@(JACK_INDEV)                += timefilter.c
 
 ifeq (@(MPLAYER),y)
-objs-@(HAVE_MMX) += $(MMX-objs-y)
-objs += $(objs-y)
+objs-@(HAVE_MMX) += $(MMX-objs-1) $(MMX-objs-y)
+objs += $(objs-1) $(objs-y)
 : foreach $(objs) |> !mplayer |> %B.o {objs}
 : {objs} |> !ar |> lib$(NAME).a
 endif
